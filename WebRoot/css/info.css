@@ -1,0 +1,60 @@
+@CHARSET "UTF-8";
+body,td,th {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #222222;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+a:link {
+	color: #222222;
+}
+a:visited {
+	color: #333333;
+}
+a:hover {
+	color: #FF3300;
+}
+a:active {
+	color: #FF3300;
+}
+.d_left {
+	background-image: url(images/d_left_bg.gif);
+}
+input {
+	height: 14px;
+	border: 1px solid #CCCCCC;
+}
+.p_commend {color: #FF3300}
+.end_ar {
+    color: #FF3300;
+	font-weight: bold;
+}
+.end {
+	color: #454545;
+	line-height: 20px;
+}
+.p_news {
+	font-size: 12px;
+	line-height: 24px;
+}
+.p_money {
+	font-size: 12px;
+	color: #FF3300;
+}
+.listmoney {
+	color: #3366CC;
+	font-weight: bold;
+}
+.i_title1 {
+	font-size: 16px;
+	font-weight: bold;
+}
+.i_txt {
+	font-size: 12px;
+	line-height: 24px;
+}

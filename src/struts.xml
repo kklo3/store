@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="login" extends="struts-default" namespace="">
+		<action name="Login" class="com.struts.action.LoginAction">
+			<result>/WebPage/back.jsp</result>
+			<result name="input">/WebPage/login.jsp</result>
+		</action>
+		<action name="Detail" class="com.struts.action.DetailAction">
+			<result>/WebPage/detail.jsp</result>
+		</action>
+		<action name="orderAction" class="com.struts.action.OrderAction">
+			<result>/WebPage/list.jsp</result>
+		</action>
+		<action name="NewUser" class="com.struts.action.NewUserAction">
+			<result>/WebPage/NewUser.jsp</result>
+		</action>
+		<action name="UserApply" class="com.struts.action.UserApplyAction">
+			<result>/WebPage/UserApply.jsp</result>
+		</action>
+		<action name="UserEdit" class="com.struts.action.UpdateUserAction">
+			<result>/WebPage/UserEdit.jsp</result>
+		</action>
+		<action name="NewProduct" class="com.struts.action.NewProductAction">
+			<result>/WebPage/NewProduct.jsp</result>
+		</action>
+		<action name="BrandDetail" class="com.struts.action.BrandDetailAction">
+			<result>/WebPage/list.jsp</result>
+		</action>
+	</package>
+	<package name="json" extends="json-default" namespace="">
+		<action name="UserLogin"
+			class="com.struts.action.UserLoginAction" method="doUserLogin">
+			<result type="json">
+				<!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="CartsAction"
+			class="com.struts.action.CartsAction" method="cartAdd">
+			<result type="json">
+				<param name="CartsAdd">result</param>
+			</result>
+		</action>
+		<action name="CartsDelAction"
+			class="com.struts.action.CartsAction" method="cartDel">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="UserDelAction"
+			class="com.struts.action.UserDelAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+</struts>    

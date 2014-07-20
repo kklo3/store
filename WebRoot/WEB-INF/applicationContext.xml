@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver">
+		</property>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:MyOracle">
+		</property>
+		<property name="username" value="King"></property>
+		<property name="password" value="king"></property>
+	</bean>
+
+	<!-- 配置SessionFactory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.OracleDialect
+				</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/store/manager/ManagerInfo.hbm.xml</value>
+				<value>com/store/user/UserInfo.hbm.xml</value>
+				<value>com/store/product/ProductInfo.hbm.xml</value>
+				<value>com/store/order/OrderInfo.hbm.xml</value>
+				<value>com/store/brand/BrandInfo.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- TransactionManager -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- Spring的Service和DAO的配置 -->
+	<bean id="ManagerInfoDAO" class="com.dao.impl.ManagerInfoDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean name="ManagerInfoService" class="com.service.impl.ManagerInfoService">
+		<property name="managerInfoDAO">
+			<ref bean="ManagerInfoDAO" />
+		</property>
+	</bean>
+	<bean id="UserInfoDAO" class="com.dao.impl.UserInfoDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean name="UserInfoService" class="com.service.impl.UserInfoService">
+		<property name="userInfoDAO">
+			<ref bean="UserInfoDAO" />
+		</property>
+	</bean>
+	<bean id="ProductInfoDAO" class="com.dao.impl.ProductInfoDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean name="ProductInfoService" class="com.service.impl.ProductInfoService">
+		<property name="productInfoDAO">
+			<ref bean="ProductInfoDAO" />
+		</property>
+	</bean>
+	<bean id="OrderInfoDAO" class="com.dao.impl.OrderInfoDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean name="OrderInfoService" class="com.service.impl.OrderInfoService">
+		<property name="orderInfoDAO">
+			<ref bean="OrderInfoDAO" />
+		</property>
+	</bean>
+	<bean id="BrandInfoDAO" class="com.dao.impl.BrandInfoDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean name="BrandInfoService" class="com.service.impl.BrandInfoService">
+		<property name="brandInfoDAO">
+			<ref bean="BrandInfoDAO" />
+		</property>
+	</bean>
+</beans>
